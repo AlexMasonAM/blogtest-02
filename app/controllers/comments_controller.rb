@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
 
 end
 
+
 # Alternate Method to create and attach comments to specifc posts
 
   # def create

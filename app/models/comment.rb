@@ -3,7 +3,7 @@ class Comment
   include Mongoid::Timestamps
   field :body, type: String
 
-  belongs_to :post
+  embedded_in :post
 
   validates :body, presence: true
 
