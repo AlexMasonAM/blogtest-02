@@ -1,9 +1,21 @@
 class CommentsController < ApplicationController
+  # alternate create definition still works like create below
+  # def create
+  #   post = Post.find(params[:post_id])
+  #   comment = post.comments.create(comment_params)
+  #   redirect_to post_path(comment.post)
+  # end
   def create
-    post = Post.find(params[:post_id])
-    comment = post.comments.create(comment_params)
-    redirect_to post_path(comment.post)
+  @post = Post.find(params[:post_id])
+
+  @comment = @post.comments.new(comment_params)
+
+  if @comment.save
+    redirect_to post_path(@post)
+  else
+    render 'posts/show'
   end
+end
 
   private
   def comment_params
@@ -11,6 +23,8 @@ class CommentsController < ApplicationController
   end
 
 end
+
+
 
 
 # Alternate Method to create and attach comments to specifc posts
