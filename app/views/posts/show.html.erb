@@ -1,0 +1,34 @@
+ <div>
+    <h1><%= @post.title %></h1>
+    <p><%= @post.body %></p>
+    <small><%= @post.date_published %></small>
+  </div> 
+
+  <br> 
+  <br> 
+
+    <div>
+      <% @comments.each do |comment| %> 
+        <p>
+          <%= comment.body %>
+          <br>
+          <%= comment.date_published %>
+        </p>
+      <% end %>
+      
+      <h4> Create a comment:</h4>
+      <%#= form_for(@new_comment, url: post_comments_path(@post)) do |f| %>
+      <%= form_for [@post, @new_comment] do |f| %>
+       
+        <%= f.text_area :body %><br>
+    
+        <%= f.submit "Add Comment" %>
+
+      <% end %>
+
+    </div> 
+
+  <br> 
+  <br> 
+
+  <%= link_to "View All Posts", posts_path %>
